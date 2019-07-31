@@ -1,18 +1,18 @@
-import React from 'react'
-
+import React from 'react';
+import { connect } from 'react-redux';
+import './donations.scss'
 const Donations = ({donations}) => {
   const donateCards = donations.map(donor => {
     return (
       <section>
-          <p>{donor.name}</p>
-          <p>{donor.donation}</p>
+        <p>{donor.name}: ${donor.donation}</p>
       </section>
     ) 
   })
   return (
-    <div>
+    <aside>
       {donateCards}
-    </div>
+    </aside>
   )
 }
 
