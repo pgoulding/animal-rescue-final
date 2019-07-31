@@ -11,6 +11,9 @@ const Donations = ({donations}) => {
   })
   return (
     <aside>
+      <h3>
+        Current Donors:
+      </h3>
       {donateCards}
     </aside>
   )
