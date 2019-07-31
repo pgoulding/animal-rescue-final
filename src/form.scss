@@ -1,0 +1,23 @@
+.donation-form {
+  background: url(./images/bear.png)center no-repeat;
+  height:200px;
+}
+
+.form-inputs{
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding:20px;
+  background-color: lightgray;
+  border-radius: 0 0 8px 0;
+  h3{
+    margin: 0;
+    text-align: center;
+  }
+  input{
+    margin:5px;
+  }
+  button{
+    margin:5px;
+  }
+}
