@@ -6,18 +6,22 @@ import Animals from './Animals';
 import { fetchCalls } from './apiFetch';
 import loadingImage from './images/giphy.gif'
 import './App.css'
+import { bindActionCreators } from 'redux';
 import {addDonation, hasErrored, isLoading, addAnimals} from "./actions" 
+import { fetchAnimals, fetchDonations } from './thunks';
 class App extends Component {
   
   async componentDidMount() {
-    const animals = await fetchCalls('rescue-animals')
-    this.props.addAnimals(animals)
-    const donation = await fetchCalls('donations')
-    this.props.addDonation(donation)
-    if(this.props.animals.length) {
-      this.props.loadingPage(false)
-    }
-    console.log(animals.response)
+    fetchAnimals('rescue-animals')
+    fetchDonations('donations')
+    // const animals = await fetchAnimals('rescue-animals')
+    // this.props.addAnimals(animals)
+    // const donation = await fetchDonations('donations')
+    // this.props.addDonation(donation)
+    // if(this.props.animals.length) {
+    //   this.props.loadingPage(false)
+    // }
+    // console.log(animals.response)
   }
   
   render () {
@@ -27,7 +31,7 @@ class App extends Component {
     }
 
     if(this.props.hasErrored) {
-      return <h1 className="error-page">We're sorry there has been an error, please refresh or come back later</h1>
+      return <h1 className="error-page">{this.props.hasErrored}</h1>
     }
     return (
       <main>
@@ -50,11 +54,12 @@ const mapStateToProps = ({hasErrored, isLoading, animals, donations}) => ({
   donations
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  addDonation: (donation) => dispatch(addDonation(donation)),
-  addAnimals: (animals) => dispatch(addAnimals(animals)),
-  loadingPage:(loading) =>dispatch(isLoading(loading))
-})
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({ addDonation, addAnimals, loadingPage, hasErrored }, dispatch)
+  // addDonation: (donation) => dispatch(addDonation(donation)),
+  // addAnimals: (animals) => dispatch(addAnimals(animals)),
+  // loadingPage:(loading) =>dispatch(isLoading(loading))
+)
 
 
 

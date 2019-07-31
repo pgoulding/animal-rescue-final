@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { addDonation } from './actions'
 import { fetchCalls } from './apiFetch';
 import './form.scss'
+import { fetchDonations } from './thunks';
 export class Form extends Component {
   constructor(){
     super()
@@ -29,8 +30,9 @@ export class Form extends Component {
       },
       body: JSON.stringify(newDonation)
     }
-    fetchCalls('donations/', options)
-    this.props.addDonation([newDonation])
+    fetchDonations('donations/', options)
+    // fetchCalls('donations/', options)
+    // this.props.addDonation([newDonation])
   } 
 
   render() {
