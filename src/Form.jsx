@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addDonation } from './actions'
 import { fetchCalls } from './apiFetch';
+import './form.scss'
 export class Form extends Component {
   constructor(){
     super()
@@ -34,7 +35,9 @@ export class Form extends Component {
 
   render() {
     return (
-      <form>
+      <form className="donation-form">
+        <div className="form-inputs">
+          <h3>Donation Form</h3>
         <input
           placeholder="Name"
           name="name"
@@ -52,6 +55,7 @@ export class Form extends Component {
         <button onClick={(e) => this.handleSubmit(e)}>
           Donate!
         </button>
+        </div>
       </form>
     )
   }
